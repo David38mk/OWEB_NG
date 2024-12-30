@@ -1,11 +1,22 @@
-<div>
-    <div>
+<div [ngClass]="klasi()">
+    <ng-template role="alert" aria-level="1" aria-live="polite" #noImg>
+        Slikata ja nemaaaaaaaaaa???!!!
+    </ng-template>
+
+    <div role="heading" aria-level="2" [ngClass]="stilovi()">
         {{indks + "." + vozac?.name}}
     </div>
-    <img width="300" [src]="vozac?.iconUrl">
+    <img width="300" *ngIf="vozac?.iconUrl; else noImg" [src]="vozac?.iconUrl" [attr.aria.label]="'Ova e slika od'+ vozac?.iconUrl">
     <div>{{vozac?.team}}</div>
 
-    <button (click)="onDrvView()">Klikni me</button>
+    <div [ngSwitch]="vozac?.category">
+        <div *ngSwitchCase="'EXPERT'" aria-atomic="false">EXPERT</div>
+        <div *ngSwitchCase="'LUNATIC'" aria-atomic="false">SHOSHON</div>
+        <div *ngSwitchCase="'ASD'" aria-atomic="false">DUSHICKA</div>
+        <div *ngSwitchDefault aria-atomic="false">no com</div>
+    </div>
+
+    <button aria-pressed="true" aria-expanded="false" (click)="onDrvView()">Klikni me</button>
 
     <div>
         &nbsp;

@@ -1,6 +1,12 @@
 <div>
-    <app-comp *ngFor="let drv of vozaci; index as i" 
+    <app-comp *ngFor="let drv of vozaci; index as i, first as prv, last as posleden, even as par, odd as nepar" 
     
     [vozac]="drv" (click)="onUpView()"
-    [indks]="i+1"></app-comp>
+    [indks]="i+1"
+    [attr.aria-label]="'Driver'+ drv?.name + 'index' + (i+1)"
+    [class.is-first] = "prv"
+    [class.is-last] = "posleden"
+    [class.is-even] = "par"
+    [class.is-odd] = "nepar"    
+    ></app-comp>
 </div>
